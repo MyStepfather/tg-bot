@@ -49,8 +49,20 @@ const token = '5949552471:AAHrmzTqKYzuy-ihVtm6Zy43-A-K-xovAts'
 
 const  bot = new TelegramApi(token, {polling: true})
 
-bot.on('message', msg => {
+bot.setMyCommands([
+    {command: '/start', description: 'Получить код'},
+    
+])
+
+bot.on('message', async msg => {
     const text = msg.text;
     const chatId = msg.chat.id;
-    bot.sendMessage(chatId, `Ты написал мне ${text}`)
+    const regId = Math.floor(Math.random() * 9000) + 1000;
+
+    if (text === '/start') {
+        console.log(msg);
+        return bot.sendMessage(chatId, `Твой код для регистрации - ${regId}`);
+        
+    }
+    return bot.sendMessage(chatId, 'Я тебя не понимаю. Попробуй еще раз!');
 })
