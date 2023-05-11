@@ -49,6 +49,15 @@ const token = '5949552471:AAHrmzTqKYzuy-ihVtm6Zy43-A-K-xovAts'
 
 const  bot = new TelegramApi(token, {polling: true})
 
+const mysql = require('mysql'); 
+
+const conn = mysql.createConnection ({
+    host: "",
+    user: "",
+    database: "",
+    password: ""
+});
+
 bot.setMyCommands([
     {command: '/start', description: 'Получить код'},
     
